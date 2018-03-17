@@ -43,6 +43,8 @@ def cer(hyp, ref):
     
     shift_cost = _shift_cost(hyp_words, hyp_backup)
     shifted_chars = list(" ".join(hyp_words))
+    if len(shifted_chars) == 0:
+        return 0
     ref_chars = list(" ".join(ref_words))
     edit_cost = edit_distance(shifted_chars, ref_chars) + shift_cost
     return edit_cost / len(shifted_chars)
